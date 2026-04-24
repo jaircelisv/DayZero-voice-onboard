@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "keywords": [
+    "voice-agent",
+    "vapi",
+    "onboarding",
+    "phone",
+    "stripe",
+    "telegram",
+    "context-engineering"
+  ],
+  "categories": [
+    "voice-agents",
+    "automation"
+  ],
+  "author": {
+    "name": "Jair Celis (DayZero team)",
+    "github": "jaircelisv"
+  },
+  "homepage": "https://github.com/jaircelisv/DayZero-voice-onboard",
+  "repository": "https://github.com/jaircelisv/DayZero-voice-onboard",
+  "license": "MIT"
+}
