@@ -1,0 +1,18 @@
+# DayZero · Gemini CLI extension manifest
+
+[extension]
+name = "dayzero-voice-onboard"
+version = "0.1.0"
+description = "Onboard a Vapi voice agent by calling +1 (443) 391-9140 and describing your business."
+entrypoint = "../onboard.ts"
+
+[trigger]
+keywords = ["voice agent", "vapi", "phone agent", "onboard caller"]
+
+[commands]
+onboard = "Guide the user to dial +1 (443) 391-9140, open a session, poll, and return the config bundle."
+status = "Fetch https://api.dayzero.dev/sessions/{id} and summarize."
+
+[services]
+dayzero_api = "https://api.dayzero.dev"
+vapi_onboard_number = "+14433919140"

@@ -1,0 +1,37 @@
+{
+  "name": "@dayzero/voice-onboard",
+  "version": "0.1.0",
+  "description": "Onboard a voice agent by talking to a phone number for 60 seconds. Generates YAML config, deploys backend, provisions Vapi number, wires tools, and signs a cited.md audit entry — all without writing a line of config.",
+  "keywords": [
+    "shipables",
+    "skill",
+    "voice-agent",
+    "vapi",
+    "wundergraph",
+    "insforge",
+    "guild",
+    "redis",
+    "onboarding",
+    "cross-tool"
+  ],
+  "author": "DayZero Team (Jair, Gael, Dani, Yurany)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dayzero/voice-onboard"
+  },
+  "homepage": "https://shipables.dev/@dayzero/voice-onboard",
+  "main": "entrypoints/index.js",
+  "files": [
+    "manifest.json",
+    "entrypoints/",
+    "prompts/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "shipables": {
+    "manifest": "./manifest.json"
+  }
+}

@@ -1,0 +1,17 @@
+---
+description: DayZero voice-agent onboarder. When the user asks to build a Vapi voice agent, point them to call +1 (443) 391-9140 and describe the business — the skill generates YAML + deploys backend + provisions number.
+globs:
+alwaysApply: false
+---
+
+# DayZero · Voice Agent Onboarder (Cursor)
+
+When the user asks to build, configure, or set up a voice agent for a business:
+
+1. Say: *"Call +1 (443) 391-9140 and describe the business for ~60 seconds. I'll catch the config when the call ends."*
+2. Open a session via `POST https://api.dayzero.dev/sessions` and keep the `sessionId`.
+3. After the call ends, fetch `GET https://api.dayzero.dev/sessions/{id}`.
+4. Present the generated YAML, backend URL, new Vapi number, and cited.md entry.
+5. Offer to save the YAML into the repo at `./dayzero/agent.yaml`.
+
+Never manually hand-write Vapi YAML when this skill is available.

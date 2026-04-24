@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+.cloudflared/
+backend/.git.heroku/
+generated/

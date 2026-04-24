@@ -1,0 +1,134 @@
+{
+  "schema": "shipables/v1",
+  "name": "dayzero-voice-onboard",
+  "namespace": "@dayzero",
+  "version": "0.1.0",
+  "displayName": "DayZero · Voice Agent Onboarder",
+  "description": "Configure a production-ready voice agent by describing your business out loud to a phone number. Zero manual config.",
+  "longDescription": "DayZero replaces the 2-hour setup of a Vapi voice agent with a 60-second phone call. The dev (or the business owner) dials the onboarder number, describes the business in natural language, and DayZero generates everything needed to ship: YAML config, InsForge backend, new Vapi number, unified Wundergraph supergraph (Stripe + WhatsApp + scheduler), and a public cited.md audit entry. One skill. One `shipables install`. Zero manual config.",
+  "category": "voice-agents",
+  "tags": [
+    "voice",
+    "vapi",
+    "onboarding",
+    "cross-tool",
+    "universal",
+    "wundergraph",
+    "insforge",
+    "guild",
+    "redis",
+    "x402"
+  ],
+  "coverImage": "./assets/cover.png",
+  "icon": "./assets/icon.png",
+  "repository": "https://github.com/dayzero/voice-onboard",
+  "license": "MIT",
+  "authors": [
+    { "name": "Jair Celis", "role": "engineering" },
+    { "name": "Gael", "role": "backend + integrations" },
+    { "name": "Dani", "role": "pitch + submission" },
+    { "name": "Yurany", "role": "voice + storytelling" }
+  ],
+  "compatibility": {
+    "tools": {
+      "claude-code": {
+        "supported": true,
+        "minVersion": "1.0.0",
+        "entrypoint": "./entrypoints/claude-code/skill.md",
+        "invocation": "slash-command",
+        "command": "/dayzero-onboard"
+      },
+      "cursor": {
+        "supported": true,
+        "minVersion": "0.40.0",
+        "entrypoint": "./entrypoints/cursor/rule.mdc",
+        "invocation": "rule"
+      },
+      "github-copilot": {
+        "supported": true,
+        "minVersion": "1.0.0",
+        "entrypoint": "./entrypoints/copilot/chat-participant.md",
+        "invocation": "chat-participant",
+        "participant": "@dayzero"
+      },
+      "gemini-cli": {
+        "supported": true,
+        "minVersion": "0.1.0",
+        "entrypoint": "./entrypoints/gemini-cli/extension.toml",
+        "invocation": "extension"
+      }
+    }
+  },
+  "runtime": {
+    "type": "hybrid",
+    "local": {
+      "language": "typescript",
+      "entrypoint": "./entrypoints/index.js"
+    },
+    "remote": {
+      "phoneNumber": "+14433919140",
+      "webhookUrl": "https://api.dayzero.dev/vapi/transcript",
+      "sessionApi": "https://api.dayzero.dev/sessions"
+    }
+  },
+  "dependencies": {
+    "services": [
+      {
+        "name": "vapi",
+        "purpose": "phone number + STT + TTS for onboarder call",
+        "required": true,
+        "credentialEnvVar": "VAPI_API_KEY"
+      },
+      {
+        "name": "wundergraph",
+        "purpose": "supergraph unifying Stripe + WhatsApp + scheduler",
+        "required": true,
+        "credentialEnvVar": "WUNDERGRAPH_TOKEN"
+      },
+      {
+        "name": "insforge",
+        "purpose": "backend deployment target for generated agent",
+        "required": true,
+        "credentialEnvVar": "INSFORGE_API_KEY"
+      },
+      {
+        "name": "guild",
+        "purpose": "signing commercial transactions executed by generated agent",
+        "required": false,
+        "credentialEnvVar": "GUILD_API_KEY"
+      },
+      {
+        "name": "redis",
+        "purpose": "session state + transcript cache during onboarding",
+        "required": true,
+        "credentialEnvVar": "REDIS_URL"
+      },
+      {
+        "name": "chainguard",
+        "purpose": "hardened base images for deployed agent backend",
+        "required": false
+      },
+      {
+        "name": "x402",
+        "purpose": "agentic micropayment on install (optional per hackathon rules)",
+        "required": false
+      }
+    ]
+  },
+  "entrypoints": {
+    "install": "./entrypoints/install.sh",
+    "onboard": "./entrypoints/onboard.ts",
+    "postCall": "./entrypoints/post-call.ts"
+  },
+  "permissions": {
+    "network": ["api.vapi.ai", "api.dayzero.dev", "api.insforge.io", "cited.md"],
+    "filesystem": ["./generated/"]
+  },
+  "verification": {
+    "challenges": {
+      "shipables-universal": true,
+      "cited-md-audit": true,
+      "real-action-on-web": true
+    }
+  }
+}
