@@ -14,8 +14,6 @@ You MUST follow a conditional conversational path to keep the UX natural. Ask qu
 1. **Business type & Name** — "What kind of business is this and what's its name?"
 2. **Offering & Goal** — "What do you sell, and what should the agent do? (e.g. Take orders, book appointments, answer FAQs)"
 3. **Operational Details (Conditional Branching - Pick ONE path based on Goal):**
-   - *If Goal = Orders:* "Do you charge upfront or upon delivery?" (If upfront: "To which bank account?"); "Do you have a website catalog or should I learn the prices?"
-   - *If Goal = Appointments:* "How long is each session and do you need a buffer time between them?"; "Do you require an upfront deposit?" (If yes: "To which bank account?")
    - *If Goal = Purely FAQs/Support:* "What are your business hours, locations, and top 3 questions?"
 4. **FAQ Cross-check (If path was Orders or Appointments)** — "Do you also want to add general information like business hours or locations to answer general questions?"
 5. **Tone** — "How should the agent sound — formal, warm, playful?"
